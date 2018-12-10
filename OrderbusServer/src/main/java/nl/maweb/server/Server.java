@@ -1,9 +1,10 @@
-package com.spraxs.js;
+package nl.maweb.server;
 
-import com.spraxs.js.framework.Config;
-import com.spraxs.js.modules.network.ClientInitializer;
-import com.spraxs.js.modules.network.packet.Encryption;
-import com.spraxs.js.modules.world.WorldModule;
+import nl.maweb.server.framework.Config;
+import nl.maweb.server.modules.network.ClientInitializer;
+import nl.maweb.server.modules.network.packet.Encryption;
+import nl.maweb.server.modules.network.tasks.PingTask;
+import nl.maweb.server.modules.world.WorldModule;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelOption;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
 
 public final class Server {
 
-    private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
+    public static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
     private static @Getter WorldModule worldModule;
 
@@ -67,6 +68,8 @@ public final class Server {
 
         // Notify sound.
         Toolkit.getDefaultToolkit().beep();
+
+        new PingTask();
     }
 
     private void printSection(String s)
