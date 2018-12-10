@@ -1,6 +1,7 @@
 package nl.maweb.server;
 
 import nl.maweb.server.framework.Config;
+import nl.maweb.server.modules.level.LevelModule;
 import nl.maweb.server.modules.network.ClientInitializer;
 import nl.maweb.server.modules.network.packet.Encryption;
 import nl.maweb.server.modules.network.tasks.PingTask;
@@ -25,6 +26,7 @@ public final class Server {
     public static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
     private static @Getter WorldModule worldModule;
+    private static @Getter LevelModule levelModule;
 
     public static void main(String[] args) {
 
@@ -84,5 +86,7 @@ public final class Server {
 
     private void initializeModules() {
         worldModule = new WorldModule();
+
+        levelModule = new LevelModule();
     }
 }

@@ -15,9 +15,6 @@ import java.util.logging.Logger;
  */
 
 public class Player extends WorldObject {
-    private static final Logger LOGGER = Logger.getLogger(Player.class.getName());
-    private static final String RESTORE_CHARACTER = "SELECT * FROM characters WHERE name=?";
-    private static final String STORE_CHARACTER = "UPDATE characters SET name=?, class_id=? WHERE account=? AND name=?";
 
     private @Getter final Client client;
 
@@ -28,7 +25,7 @@ public class Player extends WorldObject {
     }
 
     public void remove() {
-        Server.getWorldModule().removeClient(this.client);
+        Server.getWorldModule().removeObject(this);
     }
 
     public void channelSend(SendablePacket packet)

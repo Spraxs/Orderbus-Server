@@ -1,5 +1,6 @@
 package nl.maweb.server.modules.network.client;
 
+import nl.maweb.server.Server;
 import nl.maweb.server.modules.worldobjects.creatures.Player;
 import nl.maweb.server.modules.network.packet.Encryption;
 import nl.maweb.server.modules.network.packet.ReceivablePacket;
@@ -32,6 +33,8 @@ public class Client extends SimpleChannelInboundHandler<byte[]> {
         channel = ctx.channel();
         ip = channel.remoteAddress().toString();
         ip = ip.substring(1, ip.lastIndexOf(':')); // Trim out /127.0.0.1:12345
+
+        Server.getWorldModule().addClient(this);
     }
 
     public void channelSend(SendablePacket packet) {

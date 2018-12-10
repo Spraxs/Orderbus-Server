@@ -1,9 +1,9 @@
 package nl.maweb.server.modules.world;
 
-import nl.maweb.server.framework.Module;
+import nl.maweb.server.framework.modular.Module;
 import nl.maweb.server.modules.network.client.Client;
-import nl.maweb.server.modules.world.framework.World;
 import nl.maweb.server.modules.worldobjects.WorldObject;
+import nl.maweb.server.modules.worldobjects.creatures.Customer;
 import nl.maweb.server.modules.worldobjects.creatures.Player;
 
 import java.util.ArrayList;
@@ -20,9 +20,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class WorldModule extends Module {
 
-    private final List<Client> ONLINE_CLIENTS = new CopyOnWriteArrayList<>();
-    private final Map<Long, Player> PLAYER_OBJECTS = new ConcurrentHashMap<>();
-    private final Map<Long, WorldObject> GAME_OBJECTS = new ConcurrentHashMap<>();
+    private final List<Client> online_clients = new CopyOnWriteArrayList<>();
+    private final Map<Long, Player> player_objects = new ConcurrentHashMap<>();
+    private final Map<Long, Customer> customer_objects = new ConcurrentHashMap<>();
+    private final Map<Long, WorldObject> game_objects = new ConcurrentHashMap<>();
 
     @Override
     public void onEnable() {
@@ -33,15 +34,23 @@ public final class WorldModule extends Module {
     {
         if (object.isPlayer())
         {
-            if (!PLAYER_OBJECTS.values().contains(object))
+            if (!player_objects.values().contains(object.asPlayer()))
             {
-                ONLINE_CLIENTS.add(object.asPlayer().getClient());
-                PLAYER_OBJECTS.put(object.getObjectId(), object.asPlayer());
+                online_clients.add(object.asPlayer().getClient());
+                player_objects.put(object.getObjectId(), object.asPlayer());
+            }
+        } else
+
+        if (object.isCustomer())
+        {
+            if (!customer_objects.values().contains(object.asCustomer()))
+            {
+                customer_objects.put(object.getObjectId(), object.asCustomer());
             }
         }
-        else if (!GAME_OBJECTS.values().contains(object))
+        else if (!game_objects.values().contains(object))
         {
-            GAME_OBJECTS.put(object.getObjectId(), object);
+            game_objects.put(object.getObjectId(), object);
         }
     }
 
@@ -50,22 +59,23 @@ public final class WorldModule extends Module {
         // Remove from list and take necessary actions.
         if (object.isPlayer())
         {
-            PLAYER_OBJECTS.remove(object.getObjectId());
+            player_objects.remove(object.getObjectId());
+            online_clients.remove(object.asPlayer().getClient());
         }
         else
         {
-            GAME_OBJECTS.remove(object.getObjectId());
+            game_objects.remove(object.getObjectId());
         }
     }
 
     public Collection<Player> getAllPlayers() {
-        return PLAYER_OBJECTS.values();
+        return player_objects.values();
     }
 
     public List<Player> getAllPlayersExcept(WorldObject object)
     {
         final List<Player> result = new ArrayList<>();
-        for (Player player : PLAYER_OBJECTS.values())
+        for (Player player : player_objects.values())
         {
             if (object != null && player == object)
             {
@@ -76,38 +86,47 @@ public final class WorldModule extends Module {
         return result;
     }
 
+    public Collection<Customer> getAllCustomers() {
+        return customer_objects.values();
+    }
+
+    public List<Customer> getAllActiveCustomers() {
+        final List<Customer> result = new ArrayList<>();
+        for (Customer customer : customer_objects.values())
+        {
+            if (!customer.isActive())
+            {
+                continue;
+            }
+            result.add(customer);
+        }
+        return result;
+    }
+
+    public List<Customer> getAllInActiveCustomers() {
+        final List<Customer> result = new ArrayList<>();
+        for (Customer customer : customer_objects.values())
+        {
+            if (customer.isActive())
+            {
+                continue;
+            }
+            result.add(customer);
+        }
+        return result;
+    }
+
     public WorldObject getObject(long objectId)
     {
-        if (PLAYER_OBJECTS.containsKey(objectId))
-        {
-            return PLAYER_OBJECTS.get(objectId);
-        }
-        return GAME_OBJECTS.get(objectId);
+        if (player_objects.containsKey(objectId)) return player_objects.get(objectId);
+
+        if (customer_objects.containsKey(objectId)) return customer_objects.get(objectId);
+
+        return game_objects.get(objectId);
     }
 
     public int getOnlineCount()
     {
-        return ONLINE_CLIENTS.size();
-    }
-
-    public void addClient(Client client)
-    {
-        if (!ONLINE_CLIENTS.contains(client))
-        {
-            ONLINE_CLIENTS.add(client);
-        }
-    }
-
-    public void removeClient(Client client)
-    {
-        // Store and remove player.
-        final Player player = client.getActiveChar();
-        if (player != null)
-        {
-            removeObject(player);
-        }
-
-        // Remove from list.
-        ONLINE_CLIENTS.remove(client);
+        return online_clients.size();
     }
 }

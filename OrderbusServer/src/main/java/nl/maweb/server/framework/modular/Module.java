@@ -1,4 +1,4 @@
-package nl.maweb.server.framework;
+package nl.maweb.server.framework.modular;
 
 /**
  * Created by Spraxs

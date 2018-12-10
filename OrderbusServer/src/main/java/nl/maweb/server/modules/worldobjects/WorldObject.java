@@ -1,6 +1,7 @@
 package nl.maweb.server.modules.worldobjects;
 
 import nl.maweb.server.framework.managers.IdManager;
+import nl.maweb.server.modules.worldobjects.creatures.Customer;
 import nl.maweb.server.modules.worldobjects.creatures.Player;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,6 +52,23 @@ public class WorldObject {
      * @return {@link Player} instance if current object is such, {@code null} otherwise.
      */
     public Player asPlayer()
+    {
+        return null;
+    }
+
+    /**
+     * Verify if object is instance of Customer.
+     * @return {@code true} if object is instance of Customer, {@code false} otherwise.
+     */
+    public boolean isCustomer()
+    {
+        return false;
+    }
+
+    /**
+     * @return {@link Customer} instance if current object is such, {@code null} otherwise.
+     */
+    public Customer asCustomer()
     {
         return null;
     }
