@@ -1,4 +1,4 @@
-package com.spraxs.js.modules.network.packet;
+package nl.maweb.server.modules.network.packet;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

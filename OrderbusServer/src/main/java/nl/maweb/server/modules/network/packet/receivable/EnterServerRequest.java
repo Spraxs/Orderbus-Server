@@ -1,11 +1,11 @@
-package com.spraxs.js.modules.network.packet.receivable;
+package nl.maweb.server.modules.network.packet.receivable;
 
-import com.spraxs.js.framework.managers.WorldManager;
-import com.spraxs.js.modules.worldobjects.creatures.Player;
-import com.spraxs.js.modules.network.client.Client;
-import com.spraxs.js.modules.network.packet.ReceivablePacket;
-import com.spraxs.js.modules.network.packet.sendable.EnterServerInformation;
-import com.spraxs.js.modules.network.packet.sendable.PlayerInformation;
+import nl.maweb.server.Server;
+import nl.maweb.server.modules.worldobjects.creatures.Player;
+import nl.maweb.server.modules.network.client.Client;
+import nl.maweb.server.modules.network.packet.ReceivablePacket;
+import nl.maweb.server.modules.network.packet.sendable.EnterServerInformation;
+import nl.maweb.server.modules.network.packet.sendable.PlayerInformation;
 
 /**
  * @author Spraxs
@@ -14,16 +14,13 @@ public class EnterServerRequest {
 
 	public EnterServerRequest(Client client, ReceivablePacket packet) {
 
-		// Read data.
-		final String characterName = packet.readString();
-		
 		// Create a new PlayerInstance.
-		final Player player = new Player(client, characterName);
+		final Player player = new Player(client);
 
 		System.out.println("User connected to the server!");
 
 		// Add object to the world.
-		WorldManager.addObject(player);
+		Server.getWorldModule().addObject(player);
 
 		// Assign this player to client.
 		client.setActiveChar(player);
@@ -34,10 +31,11 @@ public class EnterServerRequest {
 		// Send and receive visible object information.
 		final PlayerInformation playerInfo = new PlayerInformation(player);
 
-		for (Player nearby : WorldManager.getAllPlayers(player)) {
+		for (Player nearby : Server.getWorldModule().getAllPlayersExcept(player)) {
 
 			// Send the information to the current player.
 			client.channelSend(new PlayerInformation(nearby));
+
 			// Send information to the other player as well.
 			nearby.channelSend(playerInfo);
 		}

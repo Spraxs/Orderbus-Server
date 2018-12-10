@@ -1,4 +1,4 @@
-package com.spraxs.js.framework.utils;
+package nl.maweb.server.framework.utils;
 
 import java.util.Random;
 

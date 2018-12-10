@@ -1,4 +1,4 @@
-package com.spraxs.js.framework.managers;
+package nl.maweb.server.framework.managers;
 
 /**
  * @author Pantelis Andrianakis

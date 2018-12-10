@@ -1,4 +1,4 @@
-package com.spraxs.js.modules.network.packet;
+package nl.maweb.server.modules.network.packet;
 
 import java.io.ByteArrayOutputStream;
 

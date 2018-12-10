@@ -1,7 +1,7 @@
-package com.spraxs.js.modules.network.packet.sendable;
+package nl.maweb.server.modules.network.packet.sendable;
 
-import com.spraxs.js.modules.worldobjects.WorldObject;
-import com.spraxs.js.modules.network.packet.SendablePacket;
+import nl.maweb.server.modules.worldobjects.WorldObject;
+import nl.maweb.server.modules.network.packet.SendablePacket;
 
 /**
  * @author Spraxs

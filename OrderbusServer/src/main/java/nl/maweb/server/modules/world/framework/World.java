@@ -1,6 +1,6 @@
-package com.spraxs.js.modules.world.framework;
+package nl.maweb.server.modules.world.framework;
 
-import com.spraxs.js.modules.worldobjects.WorldObject;
+import nl.maweb.server.modules.worldobjects.WorldObject;
 import lombok.Getter;
 
 import java.util.ArrayList;

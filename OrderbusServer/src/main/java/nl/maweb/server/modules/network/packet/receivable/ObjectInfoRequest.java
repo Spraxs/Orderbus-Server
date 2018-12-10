@@ -1,11 +1,11 @@
-package com.spraxs.js.modules.network.packet.receivable;
+package nl.maweb.server.modules.network.packet.receivable;
 
-import com.spraxs.js.framework.managers.WorldManager;
-import com.spraxs.js.modules.worldobjects.WorldObject;
-import com.spraxs.js.modules.worldobjects.creatures.Player;
-import com.spraxs.js.modules.network.client.Client;
-import com.spraxs.js.modules.network.packet.ReceivablePacket;
-import com.spraxs.js.modules.network.packet.sendable.PlayerInformation;
+import nl.maweb.server.Server;
+import nl.maweb.server.modules.worldobjects.WorldObject;
+import nl.maweb.server.modules.worldobjects.creatures.Player;
+import nl.maweb.server.modules.network.client.Client;
+import nl.maweb.server.modules.network.packet.ReceivablePacket;
+import nl.maweb.server.modules.network.packet.sendable.PlayerInformation;
 
 /**
  * @author Spraxs
@@ -19,7 +19,7 @@ public class ObjectInfoRequest {
 		// Get the acting player.
 		final Player player = client.getActiveChar();
 		// Send the information.
-		for (WorldObject object : WorldManager.getAllPlayers(player))
+		for (WorldObject object : Server.getWorldModule().getAllPlayersExcept(player))
 		{
 			if (object.getObjectId() == objectId)
 			{
@@ -27,7 +27,6 @@ public class ObjectInfoRequest {
 				{
 					client.channelSend(new PlayerInformation(object.asPlayer()));
 				}
-				// TODO: Other objects - NpcInformation?
 				break;
 			}
 		}

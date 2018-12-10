@@ -1,6 +1,6 @@
-package com.spraxs.js.modules.network;
+package nl.maweb.server.modules.network;
 
-import com.spraxs.js.modules.network.client.Client;
+import nl.maweb.server.modules.network.client.Client;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

@@ -1,4 +1,4 @@
-package com.spraxs.js.modules.worldobjects;
+package nl.maweb.server.modules.worldobjects;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
-package com.spraxs.js.modules.network.packet;
+package nl.maweb.server.modules.network.packet;
 
-import com.spraxs.js.modules.network.client.Client;
-import com.spraxs.js.modules.network.packet.receivable.*;
+import nl.maweb.server.modules.network.client.Client;
+import nl.maweb.server.modules.network.packet.receivable.*;
 
 /**
  * Created by Spraxs
@@ -12,6 +12,10 @@ public class RecievablePacketManager {
 
     public static void handle(Client client, ReceivablePacket packet) {
         switch (packet.readShort()) {
+            case 0: {
+                    new PingServer(client);
+                break;
+            }
             case 1: {
                 //    new AccountAuthenticationRequest(client, packet);
                 break;
@@ -50,19 +54,6 @@ public class RecievablePacketManager {
             }
             case 10: {
                 //    new ChatRequest(client, packet);
-                break;
-            }
-            case 11: {
-                new LoadInWorld(client, packet);
-                break;
-            }
-            case 12: {
-                new ObjectLocationUpdate(client, packet);
-                break;
-            }
-
-            case 13: {
-                new ObjectSpawn(client, packet);
                 break;
             }
         }

@@ -1,8 +1,7 @@
-package com.spraxs.js.modules.worldobjects;
+package nl.maweb.server.modules.worldobjects;
 
-import com.spraxs.js.framework.managers.IdManager;
-import com.spraxs.js.modules.worldobjects.creatures.Creature;
-import com.spraxs.js.modules.worldobjects.creatures.Player;
+import nl.maweb.server.framework.managers.IdManager;
+import nl.maweb.server.modules.worldobjects.creatures.Player;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,23 +36,6 @@ public class WorldObject {
     public double calculateDistance(WorldObject object)
     {
         return calculateDistance(object.getLocation().getX(), object.getLocation().getY(), object.getLocation().getZ());
-    }
-
-    /**
-     * Verify if object is instance of Creature.
-     * @return {@code true} if object is instance of Creature, {@code false} otherwise.
-     */
-    public boolean isCreature()
-    {
-        return false;
-    }
-
-    /**
-     * @return {@link Creature} instance if current object is such, {@code null} otherwise.
-     */
-    public Creature asCreature()
-    {
-        return null;
     }
 
     /**

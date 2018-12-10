@@ -1,10 +1,10 @@
-package com.spraxs.js.modules.network.client;
+package nl.maweb.server.modules.network.client;
 
-import com.spraxs.js.modules.worldobjects.creatures.Player;
-import com.spraxs.js.modules.network.packet.Encryption;
-import com.spraxs.js.modules.network.packet.ReceivablePacket;
-import com.spraxs.js.modules.network.packet.RecievablePacketManager;
-import com.spraxs.js.modules.network.packet.SendablePacket;
+import nl.maweb.server.modules.worldobjects.creatures.Player;
+import nl.maweb.server.modules.network.packet.Encryption;
+import nl.maweb.server.modules.network.packet.ReceivablePacket;
+import nl.maweb.server.modules.network.packet.RecievablePacketManager;
+import nl.maweb.server.modules.network.packet.SendablePacket;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -24,7 +24,6 @@ public class Client extends SimpleChannelInboundHandler<byte[]> {
 
     private Channel channel;
     private @Getter String ip;
-    private @Getter @Setter String accountName;
     private @Getter @Setter Player activeChar;
 
     @Override

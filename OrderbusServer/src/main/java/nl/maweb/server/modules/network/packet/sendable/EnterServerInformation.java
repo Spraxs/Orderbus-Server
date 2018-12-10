@@ -1,7 +1,7 @@
-package com.spraxs.js.modules.network.packet.sendable;
+package nl.maweb.server.modules.network.packet.sendable;
 
-import com.spraxs.js.modules.worldobjects.creatures.Player;
-import com.spraxs.js.modules.network.packet.SendablePacket;
+import nl.maweb.server.modules.worldobjects.creatures.Player;
+import nl.maweb.server.modules.network.packet.SendablePacket;
 
 /**
  * @author Spraxs
@@ -12,6 +12,6 @@ public class EnterServerInformation extends SendablePacket {
 
 		// Packet id.
 		writeShort(5);
-		// TODO: Send player information.
+		writeLong(player.getObjectId());
 	}
 }

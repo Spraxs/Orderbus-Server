@@ -1,4 +1,4 @@
-package com.spraxs.js.framework;
+package nl.maweb.server.framework;
 
 /**
  * Created by Spraxs

@@ -1,4 +1,4 @@
-package com.spraxs.js.modules.worldobjects.objects.projectiles.framework;
+package nl.maweb.server.modules.worldobjects.objects.projectiles.framework;
 
 public enum ProjectileType {
 
