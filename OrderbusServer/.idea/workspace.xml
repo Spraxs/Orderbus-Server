@@ -53,9 +53,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-105" />
-    <option name="y" value="173" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="537" />
+    <option name="y" value="183" />
     <option name="width" value="1936" />
     <option name="height" value="1013" />
   </component>
@@ -82,6 +82,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544431303322" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
