@@ -1,16 +1,15 @@
 package nl.maweb.server.modules.network.client;
 
-import nl.maweb.server.Server;
-import nl.maweb.server.modules.worldobjects.creatures.Player;
-import nl.maweb.server.modules.network.packet.Encryption;
-import nl.maweb.server.modules.network.packet.ReceivablePacket;
-import nl.maweb.server.modules.network.packet.RecievablePacketManager;
-import nl.maweb.server.modules.network.packet.SendablePacket;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.Getter;
 import lombok.Setter;
+import nl.maweb.server.modules.network.packet.Encryption;
+import nl.maweb.server.modules.network.packet.ReceivablePacket;
+import nl.maweb.server.modules.network.packet.RecievablePacketManager;
+import nl.maweb.server.modules.network.packet.SendablePacket;
+import nl.maweb.server.modules.worldobjects.creatures.Player;
 
 import java.util.logging.Logger;
 
@@ -33,8 +32,6 @@ public class Client extends SimpleChannelInboundHandler<byte[]> {
         channel = ctx.channel();
         ip = channel.remoteAddress().toString();
         ip = ip.substring(1, ip.lastIndexOf(':')); // Trim out /127.0.0.1:12345
-
-        Server.getWorldModule().addClient(this);
     }
 
     public void channelSend(SendablePacket packet) {

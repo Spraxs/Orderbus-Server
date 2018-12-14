@@ -6,8 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor @Getter
 public enum Difficulty {
 
-    NORMAL(0),
-    HARD(1);
+    EASY(0),
+    NORMAL(1),
+    HARD(2);
 
     private int id;
 }

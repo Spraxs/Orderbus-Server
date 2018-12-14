@@ -7,17 +7,17 @@ import nl.maweb.server.modules.network.packet.SendablePacket;
  * @author Spraxs
  */
 
-public class MoveToLocation extends SendablePacket {
+public class HandleLocation extends SendablePacket {
 
-    public MoveToLocation(WorldObject object, float time) {
+    public HandleLocation(WorldObject object, float time) {
 
         // Send the data.
         writeShort(9); // Packet id.
 
         writeLong(object.getObjectId());
-        writeFloat(object.getLocation().getX());
-        writeFloat(object.getLocation().getY());
-        writeFloat(object.getLocation().getZ());
-        writeFloat(time);
+        writeDouble(object.getLocation().getX());
+        writeDouble(object.getLocation().getY());
+        writeDouble(object.getLocation().getZ());
+        writeDouble(time);
     }
 }

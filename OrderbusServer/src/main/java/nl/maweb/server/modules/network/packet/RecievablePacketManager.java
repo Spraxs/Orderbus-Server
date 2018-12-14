@@ -29,7 +29,7 @@ public class RecievablePacketManager {
                 break;
             }
             case 4: {
-                //    new CharacterDeletionRequest(client, packet);
+                new DoDamage(client, packet);
                 break;
             }
             case 5: {
@@ -37,7 +37,7 @@ public class RecievablePacketManager {
                 break;
             }
             case 6: {
-                //    new CharacterSelectUpdate(client, packet);
+                //new DoDamage(client, packet);
                 break;
             }
             case 7: {
@@ -45,15 +45,11 @@ public class RecievablePacketManager {
                 break;
             }
             case 8: {
-                new LocationUpdate(client, packet);
-                break;
-            }
-            case 9: {
                 new ObjectInfoRequest(client, packet);
                 break;
             }
-            case 10: {
-                //    new ChatRequest(client, packet);
+            case 9: {
+                new LocationUpdate(client, packet);
                 break;
             }
         }

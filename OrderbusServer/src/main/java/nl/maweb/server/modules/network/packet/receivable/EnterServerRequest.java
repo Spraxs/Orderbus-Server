@@ -1,6 +1,7 @@
 package nl.maweb.server.modules.network.packet.receivable;
 
 import nl.maweb.server.Server;
+import nl.maweb.server.modules.worldobjects.Location;
 import nl.maweb.server.modules.worldobjects.creatures.Player;
 import nl.maweb.server.modules.network.client.Client;
 import nl.maweb.server.modules.network.packet.ReceivablePacket;
@@ -14,8 +15,14 @@ public class EnterServerRequest {
 
 	public EnterServerRequest(Client client, ReceivablePacket packet) {
 
+		float x = (float) packet.readDouble();
+		float y = (float) packet.readDouble();
+		float z = (float) packet.readDouble();
+
 		// Create a new PlayerInstance.
 		final Player player = new Player(client);
+
+		player.setLocation(new Location(x, y, z));
 
 		System.out.println("User connected to the server!");
 

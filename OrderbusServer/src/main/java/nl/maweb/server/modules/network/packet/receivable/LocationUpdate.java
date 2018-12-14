@@ -4,7 +4,7 @@ import nl.maweb.server.Server;
 import nl.maweb.server.modules.worldobjects.creatures.Player;
 import nl.maweb.server.modules.network.client.Client;
 import nl.maweb.server.modules.network.packet.ReceivablePacket;
-import nl.maweb.server.modules.network.packet.sendable.MoveToLocation;
+import nl.maweb.server.modules.network.packet.sendable.HandleLocation;
 
 /**
  * @author Spraxs
@@ -32,7 +32,7 @@ public class LocationUpdate {
             // Broadcast movement.
             for (Player nearby : Server.getWorldModule().getAllPlayersExcept(player))
             {
-                nearby.channelSend(new MoveToLocation(player, time));
+                nearby.channelSend(new HandleLocation(player, time));
             }
         }
     }

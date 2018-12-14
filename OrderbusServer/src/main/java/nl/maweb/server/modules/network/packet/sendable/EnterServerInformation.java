@@ -13,5 +13,7 @@ public class EnterServerInformation extends SendablePacket {
 		// Packet id.
 		writeShort(5);
 		writeLong(player.getObjectId());
+
+
 	}
 }

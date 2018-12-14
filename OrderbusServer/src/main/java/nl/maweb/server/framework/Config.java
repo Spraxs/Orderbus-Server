@@ -14,7 +14,8 @@ public final class Config {
     public static void load() {
 
         SERVER_IP = "127.0.0.1";
-        SERVER_PORT = 25565;
+       // SERVER_IP = "10.120.21.166";
+        SERVER_PORT = 880;
 
 
         IO_PACKET_THREAD_CORE_SIZE = 2;
